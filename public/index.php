@@ -1,53 +1,57 @@
 <?php
-require './functions.php';
+require './functions/functions.php';
 
 if (isset($_POST['submit'])) {
 
 
 
-    $email = $_POST['email'];
+    // $email = $_POST['email'];
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Dit is geen geldige email ";
-        print_r($emailErr);
-        return;
-      }
+    // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //     $emailErr = "Dit is geen geldige email ";
+    //     print_r($emailErr);
+    //     return;
+    // }
 
-    $soort = 0;
+    // $soort = 0;
+    // $message = "alle nieuws";
+
+    // if (isset($_POST['some']) && isset($_POST['all'])) {
+    //     $soort = 3;
+    //     $message = "alle nieuws";
+    // } elseif (isset($_POST['all'])) {
+    //     $message = "alle nieuws maar geen belangerijke mails";
+    //     $soort = 1;
+    // } elseif (isset($_POST['some'])) {
+    //     $soort = 2;
+    //     $message = "alle belangerijke mails";
+    // } else {
+    //     $checkboxErr = "Je moet één nieuwsbrief selecteren";
+    //     print_r($checkboxErr);
+    //     return;
+    // }
+
+    // $conn = $functions->dbConnect();
 
 
-    if (isset($_POST['some']) && isset($_POST['all'])) {
-        $soort = 3;
-     }elseif(isset($_POST['all'])){
-        $soort = 1;
-     }elseif(isset($_POST['some']) ){
-        $soort = 2;
+    // $sql = "INSERT INTO emails (email,soort)
+    //             VALUES (:email, :soort);";
+    // $statement = $conn->prepare($sql);
+    // $params = [
+    //     'email' => $email,
+    //     'soort' => $soort
 
-     }  
-     else{
-        $checkboxErr = "Je moet één nieuwsbrief selecteren";
-        print_r($checkboxErr);
-        return;
-     }
+    // ];
 
-    $conn = $functions->dbConnect();
+    // $statement->execute($params);
 
+    header("Location : mail.php");
 
-    $sql = "INSERT INTO emails (email,soort)
-                VALUES (:email, :soort);";
-    $statement = $conn->prepare($sql);
-    $params = [
-        'email' => $email,
-        'soort' => $soort
+    }
 
-    ];
-
-    $statement->execute($params);
-
-}
 ?>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./assest/css/style.css">
 
 <body>
     <h1>Aanmelden Nieuwsbrief</h1>
@@ -62,12 +66,12 @@ if (isset($_POST['submit'])) {
                 <input type="checkbox" id="all" name="all" value="1">
             </label>
             <label for="some">
-            Alleen spoedbriefen:
-            <input type="checkbox" id="some" name="some" value="1">
+                Alleen spoedbriefen:
+                <input type="checkbox" id="some" name="some" value="1">
 
             </label>
         </div>
-        <button name="submit" class="button" >Verstuur</button>
+        <button name="submit" class="button">Verstuur</button>
 
     </form>
 </body>
